@@ -1,4 +1,4 @@
-package com.dbg;
+package com.vonotte;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
