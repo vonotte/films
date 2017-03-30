@@ -31,6 +31,14 @@ public class Evaluation implements Serializable{
 	private Film film;
 	
 
+	public Film getFilm() {
+		return film;
+	}
+
+	public void setFilm(Film film) {
+		this.film = film;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 	

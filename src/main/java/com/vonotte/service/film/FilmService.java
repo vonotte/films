@@ -16,6 +16,15 @@ public interface FilmService {
 	 */
 	List<FilmDTO> findAll();
 	
+
+	/**
+	 * Devuelve una pelicula por id
+	 * 
+	 * @param Integer
+	 * @return FilmDTO 
+	 */
+	FilmDTO findfilmById(Integer id);
+	
 	
 	
 	/**

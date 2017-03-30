@@ -34,6 +34,11 @@ public class FilmServiceImpl implements FilmService{
 	}
 	
 	@Override
+	public FilmDTO findfilmById(Integer id) {		
+		return transform(filmDao.findOne(id));
+	}
+	
+	@Override
 	public FilmDTO create(FilmPostDTO f) {
 		final Film film= transform(f);
 		film.setCreatedAt(new Date());
@@ -48,6 +53,8 @@ public class FilmServiceImpl implements FilmService{
 	public Film transform(FilmPostDTO film) {		
 		return dozer.map(film, Film.class);
 	}
+
+	
 
 	
 

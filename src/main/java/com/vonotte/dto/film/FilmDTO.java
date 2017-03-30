@@ -17,11 +17,13 @@ public class FilmDTO extends DTO{
 	
 	private Integer year;
 	
+		
+
 	private List<Evaluation> evaluation;
 	
 	public FilmDTO(){
 		super();
-	}
+	}	
 	
 
 	public List<Evaluation> getEvaluation() {

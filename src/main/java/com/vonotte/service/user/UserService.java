@@ -19,8 +19,8 @@ public interface UserService {
 	/**
 	 * Busca un usuario por id
 	 * 
-	 * @param id
-	 * @return
+	 * @param Integer
+	 * @return UserDTO
 	 * @throws UserNotFoundException
 	 */
 	UserDTO findUserById(Integer id);
