@@ -10,7 +10,7 @@ public interface UserService {
 
 	
 	/**
-	 * Busca todos los usuarios que contengan en su nombre name o en su dni dni
+	 * Devuelve todas las peliculas
 	 * 
 	 * @return Listado de Usuarios
 	 */
@@ -29,8 +29,8 @@ public interface UserService {
 	/**
 	 * Da de alta un usuario en el sistema
 	 * 
-	 * @param u
-	 * @return
+	 * @param UserPostDTO
+	 * @return UserDTO
 	 * @throws InvalidDataException
 	 * 
 	 */

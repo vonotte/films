@@ -1,11 +1,21 @@
 package com.vonotte.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
@@ -19,9 +29,56 @@ public class Film implements Serializable {
 	@GeneratedValue
 	private Integer id;
 	
+	
+	@Column(unique = true)
+	@NotNull
+	@NotBlank
 	private String title;
 	
-	private Integer year;
+	private Integer year;	
+	
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
+	private List<Evaluation> evaluation;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedAt;
+	
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public List<Evaluation> getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(List<Evaluation> evaluation) {
+		this.evaluation = evaluation;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public Integer getYear() {
 		return year;

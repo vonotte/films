@@ -12,8 +12,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "critiques")
-public class Critiques implements Serializable{
+@Table(name = "evaluation")
+public class Evaluation implements Serializable{
 
 	
 	private static final long serialVersionUID = -8132114525672581401L;
@@ -27,11 +27,25 @@ public class Critiques implements Serializable{
 	@ManyToOne
 	private User user;
 	
+	@ManyToOne
+	private Film film;
+	
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedAt;
 	
+	
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
