@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,8 +36,10 @@ public class Film implements Serializable {
 	@NotBlank
 	private String title;
 	
-	private Integer year;	
+	private Integer year;
 	
+	@ManyToMany(fetch = FetchType.LAZY,  mappedBy = "films" )
+	private List<Category> categories;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
 	private List<Evaluation> evaluation;
