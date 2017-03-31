@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vonotte.dto.user.UserDTO;
 import com.vonotte.dto.user.UserPostDTO;
+import com.vonotte.exceptions.InvalidDataException;
+import com.vonotte.exceptions.UserNotFoundException;
 import com.vonotte.service.user.UserService;
 
 @RestController
@@ -26,13 +28,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public UserDTO findById(@PathVariable("id") Integer id) {
+	public UserDTO findById(@PathVariable("id") Integer id)throws UserNotFoundException {
 		return userservice.findUserById(id);
 	}	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public UserDTO create(@RequestBody UserPostDTO u){
+	public UserDTO create(@RequestBody UserPostDTO u) throws InvalidDataException{
 		return userservice.create(u);
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Integer id) throws UserNotFoundException {
+		userservice.delete(id);
 	}
 
 }

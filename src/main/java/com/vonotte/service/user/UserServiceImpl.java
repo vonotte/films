@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.vonotte.dao.UserDao;
 import com.vonotte.dto.user.UserDTO;
 import com.vonotte.dto.user.UserPostDTO;
+import com.vonotte.exceptions.InvalidDataException;
+import com.vonotte.exceptions.UserNotFoundException;
 import com.vonotte.model.User;
 
 
@@ -35,15 +37,27 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public UserDTO findUserById(Integer id) {		
-		return transform(userDao.findOne(id));
+	public UserDTO findUserById(Integer id) throws UserNotFoundException {		
+		final User user = userDao.findOne(id);
+		if (user != null){
+			return transform(userDao.findOne(id));
+		}
+		throw new UserNotFoundException();
+		
 	}
 
 	@Override
-	public UserDTO create(UserPostDTO u) {
-		final User user = transform(u);
-		user.setCreatedAt(new Date());
-		return transform(userDao.save(user));		
+	public UserDTO create(UserPostDTO u) throws InvalidDataException{
+		if(validate(u)){
+			final User user = transform(u);
+			user.setCreatedAt(new Date());
+			return transform(userDao.save(user));
+		}
+		throw new InvalidDataException("Los datos del usuario no son correctos");			
+	}
+
+	private boolean validate(UserPostDTO u) {		
+		return u != null && u.getName()!= null && !u.getName().equals("");
 	}
 
 	@Override
@@ -54,6 +68,15 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDTO transform(User u) {
 		return dozer.map(u, UserDTO.class);
+	}
+
+	@Override
+	public void delete(Integer id) throws UserNotFoundException {
+		final User user = userDao.findOne(id);
+		if (user != null){
+			userDao.delete(id);
+		}
+		throw new UserNotFoundException();		
 	}
 
 	

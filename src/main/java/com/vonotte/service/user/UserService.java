@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.vonotte.dto.user.UserDTO;
 import com.vonotte.dto.user.UserPostDTO;
+import com.vonotte.exceptions.InvalidDataException;
+import com.vonotte.exceptions.UserNotFoundException;
 import com.vonotte.model.User;
 
 public interface UserService {
@@ -23,7 +25,7 @@ public interface UserService {
 	 * @return UserDTO
 	 * @throws UserNotFoundException
 	 */
-	UserDTO findUserById(Integer id);
+	UserDTO findUserById(Integer id) throws UserNotFoundException;
 	
 	
 	/**
@@ -34,7 +36,7 @@ public interface UserService {
 	 * @throws InvalidDataException
 	 * 
 	 */
-	UserDTO create(UserPostDTO u);
+	UserDTO create(UserPostDTO u) throws InvalidDataException;;
 	
 	/**
 	 * Transforma un UserPostDTO en un User
@@ -52,6 +54,16 @@ public interface UserService {
 	 * @return UserDTO
 	 */
 	UserDTO transform(User user);
+	
+	
+	/**
+	 * Realiza el borrado de un usuario
+	 * 
+	 * @param Integer
+	 * @throws UserNotFoundException
+	 */
+	void delete(Integer id) throws UserNotFoundException;
+
 	
 	
 	
