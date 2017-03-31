@@ -38,7 +38,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") Integer id) throws UserNotFoundException {
 		userservice.delete(id);
 	}

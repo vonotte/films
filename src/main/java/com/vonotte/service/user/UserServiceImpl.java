@@ -73,10 +73,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void delete(Integer id) throws UserNotFoundException {
 		final User user = userDao.findOne(id);
-		if (user != null){
-			userDao.delete(id);
-		}
-		throw new UserNotFoundException();		
+		if (user != null)
+			userDao.delete(id);		
+		else
+			throw new UserNotFoundException();		
 	}
 
 	
