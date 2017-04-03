@@ -32,6 +32,7 @@ public class Category implements Serializable {
 	@NotBlank
 	private String name;	
 	
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Film> films;	
 	

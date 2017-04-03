@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vonotte.dto.film.FilmDTO;
 import com.vonotte.dto.film.FilmPostDTO;
+import com.vonotte.exceptions.FilmNotFoundException;
+import com.vonotte.exceptions.InvalidDataException;
 import com.vonotte.service.film.FilmService;
 
 @RestController
@@ -26,12 +28,12 @@ public class FilmController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public FilmDTO findById(@PathVariable("id") Integer id) {
+	public FilmDTO findById(@PathVariable("id") Integer id) throws FilmNotFoundException  {
 		return filmService.findfilmById(id);
 	}	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public FilmDTO create(@RequestBody FilmPostDTO f){
+	public FilmDTO create(@RequestBody FilmPostDTO f) throws InvalidDataException{
 		return filmService.create(f);
 	}
 	

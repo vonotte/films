@@ -1,63 +1,67 @@
 package com.vonotte.dto.evaluation;
 
 import com.vonotte.dto.DTO;
-import com.vonotte.model.Film;
-import com.vonotte.model.User;
 
 public class EvaluationDTO extends DTO{
 	
 	
 	private static final long serialVersionUID = 3454542971856203811L;
 	
-	private Integer id;
+	
+	private Integer points;
 	
 
-	private Integer rate;
+	private String name;
 	
 	
-	private User user;
+	private String title;
 	
 	
-	private Film film;
-	
-
-	
-	public Film getFilm() {
-		return film;
+	public EvaluationDTO(Integer points, String name, String title) {
+		super();
+		this.points = points;
+		this.name = name;
+		this.title = title;
 	}
 
-	public void setFilm(Film film) {
-		this.film = film;
-	}		
-	
 
-	public Integer getRate() {
-		return rate;
-	}
 
-	public void setRate(Integer rate) {
-		this.rate = rate;
-	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public EvaluationDTO(){
+		super();
 	}
 	
-	public Integer getId() {
-		return id;
+	
+	
+
+	public Integer getPoints() {
+		return points;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setPoints(Integer points) {
+		this.points = points;
 	}
 
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
+	public String toString() {		
 		return null;
 	}
 

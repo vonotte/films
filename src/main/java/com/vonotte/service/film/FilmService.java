@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.vonotte.dto.film.FilmDTO;
 import com.vonotte.dto.film.FilmPostDTO;
+import com.vonotte.exceptions.FilmNotFoundException;
+import com.vonotte.exceptions.InvalidDataException;
 import com.vonotte.model.Film;
 
 
@@ -22,8 +24,9 @@ public interface FilmService {
 	 * 
 	 * @param Integer
 	 * @return FilmDTO 
+	 * @throws FilmNotFoundException 
 	 */
-	FilmDTO findfilmById(Integer id);
+	FilmDTO findfilmById(Integer id) throws FilmNotFoundException;
 	
 	
 	
@@ -35,7 +38,7 @@ public interface FilmService {
 	 * @throws InvalidDataException
 	 * 
 	 */
-	FilmDTO create(FilmPostDTO f);
+	FilmDTO create(FilmPostDTO f) throws InvalidDataException;
 	
 	
 	/**

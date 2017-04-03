@@ -6,13 +6,20 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "evaluation")
+import org.hibernate.validator.constraints.NotBlank;
+
+
+
+@Entity(name="evaluation")
+@Table(name = "evaluation",uniqueConstraints = {@UniqueConstraint(columnNames = { "user_id", "film_id" })})
 public class Evaluation implements Serializable{
 
 	
@@ -22,12 +29,16 @@ public class Evaluation implements Serializable{
 	@GeneratedValue
 	private Integer Id;
 	
-	private Integer rate;
+	@NotNull
+	@NotBlank
+	private Integer points;
 	
 	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	@ManyToOne
+	@JoinColumn(name = "film_id")
 	private Film film;
 	
 
@@ -69,21 +80,21 @@ public class Evaluation implements Serializable{
 	public void setId(Integer id) {
 		Id = id;
 	}
-
-	public Integer getRate() {
-		return rate;
-	}
-
-	public void setRate(Integer rate) {
-		this.rate = rate;
-	}
-
+	
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Integer getPoints() {
+		return points;
+	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
 	}
 	
 

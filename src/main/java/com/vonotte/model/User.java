@@ -2,17 +2,18 @@ package com.vonotte.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
@@ -25,11 +26,13 @@ public class User implements Serializable  {
 	@GeneratedValue
 	private Integer id;	
 	
-	@Column(unique = true)
-	@NotNull
-	@NotBlank
-	private String name;
+	@Column(unique = true)	
+	private String name;	
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Evaluation> evaluations;	
+	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 	
@@ -67,6 +70,14 @@ public class User implements Serializable  {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public List<Evaluation> getEvaluations() {
+		return evaluations;
+	}
+
+	public void setEvaluations(List<Evaluation> evaluations) {
+		this.evaluations = evaluations;
 	}
 	
 

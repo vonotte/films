@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService{
 		if(validate(u)){
 			final User user = transform(u);
 			user.setCreatedAt(new Date());
+			user.setUpdatedAt(new Date());
 			return transform(userDao.save(user));
 		}
 		throw new InvalidDataException("Los datos del usuario no son correctos");			

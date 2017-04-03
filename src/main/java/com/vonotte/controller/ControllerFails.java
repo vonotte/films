@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.vonotte.dto.ApiErrorDTO;
+import com.vonotte.exceptions.EvaluationNotFoundException;
+import com.vonotte.exceptions.FilmNotFoundException;
 import com.vonotte.exceptions.InvalidDataException;
 import com.vonotte.exceptions.UserNotFoundException;
 
@@ -17,6 +19,20 @@ public class ControllerFails {
 	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ApiErrorDTO error(Exception e) {
+		return new ApiErrorDTO(404, e.getMessage());
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(EvaluationNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ApiErrorDTO errorEvaluation(Exception e) {
+		return new ApiErrorDTO(404, e.getMessage());
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(FilmNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ApiErrorDTO errorFilm(Exception e) {
 		return new ApiErrorDTO(404, e.getMessage());
 	}
 

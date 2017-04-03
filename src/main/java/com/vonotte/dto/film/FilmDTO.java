@@ -1,10 +1,6 @@
 package com.vonotte.dto.film;
 
-
-import java.util.List;
-
 import com.vonotte.dto.DTO;
-import com.vonotte.model.Evaluation;
 
 public class FilmDTO extends DTO{	
 	
@@ -15,25 +11,12 @@ public class FilmDTO extends DTO{
 	
 	private String title;
 	
-	private Integer year;
-	
-		
-
-	private List<Evaluation> evaluation;
+	private Integer year;	
 	
 	public FilmDTO(){
 		super();
-	}	
+	}
 	
-
-	public List<Evaluation> getEvaluation() {
-		return evaluation;
-	}
-
-	public void setEvaluation(List<Evaluation> evaluation) {
-		this.evaluation = evaluation;
-	}
-
 	public Integer getId() {
 		return id;
 	}

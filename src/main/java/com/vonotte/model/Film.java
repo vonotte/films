@@ -14,9 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
@@ -31,14 +29,12 @@ public class Film implements Serializable {
 	private Integer id;
 	
 	
-	@Column(unique = true)
-	@NotNull
-	@NotBlank
+	@Column(unique = true)	
 	private String title;
 	
 	private Integer year;
 	
-	@ManyToMany(fetch = FetchType.LAZY,  mappedBy = "films" )
+	@ManyToMany(fetch = FetchType.LAZY,  mappedBy = "films")
 	private List<Category> categories;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
